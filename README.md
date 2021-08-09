@@ -1,4 +1,4 @@
-# CRE Kong Docker Compose Collection.
+# Kong Docker Compose Reference
 
 Docker compose file collection for various Kong usecase.
 
