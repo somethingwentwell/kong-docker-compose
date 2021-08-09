@@ -1,0 +1,12 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+- name: httpbin-service
+  url: http://httpbin1/anything
+  routes:
+  - name: httpbin-route
+    paths:
+    - /foo
+
+

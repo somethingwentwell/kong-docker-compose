@@ -1,0 +1,15 @@
+version: "3"
+services:
+ echo:
+  image: jmalloc/echo-server
+  container_name: echo1
+  networks:
+   - kong
+  ports:
+   - 8083:8080
+
+ httpbin:
+  image: kennethreitz/httpbin
+  container_name: httpbin1
+  networks:
+   - kong

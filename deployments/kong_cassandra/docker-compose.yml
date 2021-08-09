@@ -1,0 +1,58 @@
+version: "3"
+services:
+
+ cassandra1:
+  extends:
+   file: ../../base/db.yml
+   service: cassandra
+  container_name: cassandra1
+  networks:
+   - kong
+
+ kong-ent-bootstrap:
+  extends:
+   file: ../../base/kong.base.yml
+   service: kong-ent-bootstrap
+  depends_on:
+   - cassandra1
+  networks:
+   - kong
+  environment:
+   - KONG_DATABASE=cassandra
+   - KONG_CASSANDRA_CONTACT_POINTS=cassandra1
+
+ kong-ent:
+  extends:
+   file: ../../base/kong.base.yml
+   service: kong-ent
+  depends_on:
+   - postgres
+   - kong-ent-bootstrap
+  networks:
+   - kong
+  ports:
+   - 8000:8000
+   - 8001:8001
+   - 8002:8002
+   - 8003:8003
+   - 8004:8004
+   - 8443:8443
+   - 8444:8444
+   - 8445:8445
+   - 8446:8446
+   - 8447:8447
+  extra_hosts:
+    - "python:10.0.0.1"
+  environment:
+   - KONG_ENFORCE_RBAC=on
+   - KONG_ADMIN_GUI_AUTH=basic-auth
+   - KONG_ADMIN_GUI_SESSION_CONF={"secret":"secret","storage":"kong","cookie_secure":false}
+   - KONG_DATABASE=cassandra
+   - KONG_CASSANDRA_CONTACT_POINTS=cassandra1
+   - KONG_DB_UPDATE_PROPAGATION=5
+networks:
+  kong:
+    ipam:
+      driver: default
+      config: 
+        - subnet: 10.0.0.0/24 

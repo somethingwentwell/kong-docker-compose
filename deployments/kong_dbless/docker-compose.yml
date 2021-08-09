@@ -1,0 +1,35 @@
+version: "3"
+services:
+
+ kong-dbless:
+  extends:
+   file: ../../base/kong.base.yml
+   service: kong-dbless
+  image: ${KONG_IMAGE}
+  networks:
+   - kong
+  restart: always
+  command: "kong start " 
+  ports:
+   - 8001:8001
+   - 8002:8002
+   - 8443:8443
+   - 8444:8444
+   - 8445:8445
+  volumes:
+   - ./kong.yml:/tmp/kong.yml
+  environment:
+   - KONG_LOG_LEVEL=debug 
+   - KONG_LICENSE_DATA=${KONG_LICENSE_DATA}
+   - KONG_DECLARATIVE_CONFIG=/tmp/kong.yml
+   - KONG_ANONYMOUS_REPORTS=off
+   - KONG_PROXY_LISTEN=0.0.0.0:8000, 0.0.0.0:8443 ssl
+   - KONG_STATUS_LISTEN=0.0.0.0:8100
+#   - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+#   - KONG_ADMIN_GUI_LISTEN=0.0.0.0:8002, 0.0.0.0:8445 ssl
+networks:
+  kong:
+    ipam:
+      driver: default
+      config: 
+        - subnet: 10.0.0.0/24 
