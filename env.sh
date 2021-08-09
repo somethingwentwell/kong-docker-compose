@@ -15,10 +15,4 @@ export DEPLOYMENT="kong_postgres"
 # export DEPLOYMENT="kong_cassandra"
 # export DEPLOYMENT="kong_dbless"
 
-# export CONFIG="warren"
-
 docker-compose -f deployments/$DEPLOYMENT/docker-compose.yml -f base/upstreams_basic.yml up -d
-
-# Deck 
-#sleep 10
-# deck sync -s plugins/$CONFIG/kong.yaml

@@ -9,7 +9,7 @@ Docker compose file collection for various Kong usecase.
 
 # How to use
 
-1. Setup environment variables for `KONG_IMAGE`, `KONG_LICENSE_DATA`, `DEPLOYMENT` , `CONFIG`
+1. Setup environment variables for `KONG_IMAGE`, `KONG_LICENSE_DATA`, `DEPLOYMENT`
 
 ```
 export KONG_IMAGE=kong/kong-gateway:2.4.1.1-alpine
@@ -18,7 +18,7 @@ export KONG_LICENSE_DATA=`cat ./license.json`
 ```
 or you can just use the `env` file to initialize
 ```
- . ./env
+./env
 ```
 
 
