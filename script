@@ -1,0 +1,4 @@
+inso generate config gitlab-kong-apiops.yaml > kong.yaml
+deck validate --kong-addr http://127.0.0.1:8001 -s kong.yaml
+deck diff --kong-addr http://127.0.0.1:8001 -s kong.yaml    
+deck sync --kong-addr http://127.0.0.1:8001 -s kong.yaml

@@ -1,0 +1,68 @@
+_format_version: "1.1"
+services:
+  - name: JihuAPI
+    protocol: http
+    host: 20.205.148.254
+    port: 1337
+    path: /
+    plugins: []
+    routes:
+      - tags:
+          - OAS3_import
+        name: JihuAPI-jihus-get
+        methods:
+          - GET
+        paths:
+          - /jihus$
+        strip_path: false
+        plugins:
+          - enabled: true
+            config:
+              minute: 5
+              policy: local
+            name: rate-limiting
+            tags:
+              - OAS3_import
+      - tags:
+          - OAS3_import
+        name: JihuAPI-jihus-post
+        methods:
+          - POST
+        paths:
+          - /jihus$
+        strip_path: false
+      - tags:
+          - OAS3_import
+        name: JihuAPI-jihus_count-get
+        methods:
+          - GET
+        paths:
+          - /jihus/count$
+        strip_path: false
+      - tags:
+          - OAS3_import
+        name: JihuAPI-jihus_id-get
+        methods:
+          - GET
+        paths:
+          - /jihus/(?<id>[^\/]+)$
+        strip_path: false
+      - tags:
+          - OAS3_import
+        name: JihuAPI-jihus_id-put
+        methods:
+          - PUT
+        paths:
+          - /jihus/(?<id>[^\/]+)$
+        strip_path: false
+      - tags:
+          - OAS3_import
+        name: JihuAPI-jihus_id-delete
+        methods:
+          - DELETE
+        paths:
+          - /jihus/(?<id>[^\/]+)$
+        strip_path: false
+    tags:
+      - OAS3_import
+

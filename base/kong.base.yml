@@ -23,7 +23,6 @@ services:
    command: "kong start --run-migrations" 
    volumes:
     - ../cert:/tmp/cert
-    - ../js-plugins:/usr/local/kong/js-plugins
    ports:
     - 8000:8000
     - 8001:8001
@@ -58,11 +57,11 @@ services:
     - KONG_PORTAL_GUI_LISTEN=0.0.0.0:8003, 0.0.0.0:8446 ssl
     - KONG_PORTAL_SESSION_CONF={"storage":"kong","cookie_name":"portal_session","secret":"super-secret","cookie_secure":false}
     - KONG_PORTAL_API_LISTEN=0.0.0.0:8004, 0.0.0.0:8447 ssl
-    - KONG_PLUGINSERVER_NAMES=js
-    - KONG_PLUGINSERVER_JS_SOCKET=/usr/local/kong/js_pluginserver.sock
-    - KONG_PLUGINSERVER_JS_START_CMD=/usr/bin/kong-js-pluginserver -v --plugins-directory /usr/local/kong/js-plugins
-    - KONG_PLUGINSERVER_JS_QUERY_CMD=/usr/bin/kong-js-pluginserver --plugins-directory /usr/local/kong/js-plugins --dump-all-plugins
-    - KONG_PLUGINS=bundled,js-hello,js-censor
+    # - KONG_PLUGINSERVER_NAMES=js
+    # - KONG_PLUGINSERVER_JS_SOCKET=/usr/local/kong/js_pluginserver.sock
+    # - KONG_PLUGINSERVER_JS_START_CMD=/usr/bin/kong-js-pluginserver -v --plugins-directory /usr/local/kong/js-plugins
+    # - KONG_PLUGINSERVER_JS_QUERY_CMD=/usr/bin/kong-js-pluginserver --plugins-directory /usr/local/kong/js-plugins --dump-all-plugins
+    # - KONG_PLUGINS=bundled,js-hello,js-censor
 
 
  kong-cp:

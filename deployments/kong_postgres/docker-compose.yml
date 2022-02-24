@@ -48,6 +48,8 @@ services:
    - KONG_DATABASE=postgres
    - KONG_PG_HOST=postgres
    - KONG_PG_PASSWORD=kong
+   - KONG_PORTAL=on
+   - KONG_PORTAL_GUI_HOST=localhost:8003
 networks:
   kong:
     ipam:

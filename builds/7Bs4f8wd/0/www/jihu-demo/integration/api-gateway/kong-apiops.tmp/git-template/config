@@ -1,0 +1,6 @@
+[init]
+	defaultBranch = none
+[fetch]
+	recurseSubmodules = false
+[http "https://jihulab.com"]
+	sslCAInfo = /Users/warren/GitLab/kong-docker-compose/builds/7Bs4f8wd/0/www/jihu-demo/integration/api-gateway/kong-apiops.tmp/CI_SERVER_TLS_CA_FILE
